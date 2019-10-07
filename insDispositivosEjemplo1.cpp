@@ -19,6 +19,7 @@ int main(){
 	struct mosquitto *mosq = NULL;//una instancia válida de mosquitto.
 	
 	mosquitto_lib_init();//se debe de llmar antes que cualquier funcion de mosquitto
+	
 	mosq = mosquitto_new(NULL, clean_session, NULL);//crea una nueva instacncia de un cliente mosquitto
 	
 	if(!mosq){
@@ -30,6 +31,7 @@ int main(){
 	mosquitto_connect_callback_set(mosq, conexion_de_vuelta);//Establece la devolución de llamada de conexión.
 	mosquitto_message_callback_set(mosq,mensaje_de_vuelta);//Establece la devolución de llamada del mensaje.
 	mosquitto_subscribe_callback_set(mosq, subscribcion_de_vuelta);//Establece la devolución de llamada de suscripción.
+	cout<<"subcripcion terminada"<<endl;
 	
 	if(mosquitto_connect(mosq, host, port, keepalive)){//Conecta a un MQTT Broker
 		cout<<"No se pudo conectar con el Broker"<<endl;
